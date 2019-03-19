@@ -26,15 +26,18 @@ public class vistaprincipal extends javax.swing.JFrame {
      * Creates new form vistaprincipal
      */
     public vistaprincipal() {
-        
- 
-      Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-      int height = pantalla.height;
-      int width = pantalla.width;
-      setSize(width/2, height/2);		
- 
-      setLocationRelativeTo(null);		
-      setVisible(true);
+
+        //quitar los bordes de la pantalla
+        vistaprincipal.super.setUndecorated(true);
+
+        //centrarlo
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;
+        setSize(width / 2, height / 2);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
 
         initComponents();
         //color de fondo
@@ -44,19 +47,21 @@ public class vistaprincipal extends javax.swing.JFrame {
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT));
         lblImagen.setIcon(icono);
         this.repaint();
-        
+
         //ubicar el foco en el primer textfield
-        
         txtUsuario.requestFocus();
-        
-        
-        
+
+        //foto de grupo
+        ImageIcon fotodeGrupo = new ImageIcon("src/imagenes/Fotodeequipo.jpg");
+        Icon iconogrupo = new ImageIcon(fotodeGrupo.getImage().getScaledInstance(fotoGrupo.getWidth(), fotoGrupo.getHeight(), Image.SCALE_DEFAULT));
+        fotoGrupo.setIcon(iconogrupo);
+        this.repaint();
 
 //image del fondo
-          ImageIcon fondo1 = new ImageIcon("src/imagenes/ues_fondo02.jpg");
-Icon iconosalida = new ImageIcon(fondo1.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
-fondo.setIcon(iconosalida);
-this.repaint(); 
+        ImageIcon fondo1 = new ImageIcon("src/imagenes/ues_fondo02.jpg");
+        Icon iconosalida = new ImageIcon(fondo1.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
+        fondo.setIcon(iconosalida);
+        this.repaint();
     }
 
     /**
@@ -72,10 +77,11 @@ this.repaint();
         lblUsuario = new javax.swing.JLabel();
         lblcontra = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasena = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JPasswordField();
         btnSalir = new javax.swing.JButton();
         btnRegistro = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
+        fotoGrupo = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,17 +100,6 @@ this.repaint();
             }
         });
 
-        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaActionPerformed(evt);
-            }
-        });
-        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtContrasenaKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
@@ -115,9 +110,9 @@ this.repaint();
                     .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(txtContrasena))
                 .addGap(35, 35, 35))
         );
         panelRegistroLayout.setVerticalGroup(
@@ -134,7 +129,7 @@ this.repaint();
                 .addContainerGap())
         );
 
-        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 90));
+        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 90));
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir.setText("salir");
@@ -152,34 +147,25 @@ this.repaint();
                 btnRegistroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
         getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 62, 56));
+        getContentPane().add(fotoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 100));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 412, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContrasenaActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         // TODO add your handling code here:
-         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-       txtContrasena.requestFocus();
-    }  
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtContrasena.requestFocus();
+        }
     }//GEN-LAST:event_txtUsuarioKeyPressed
-
-    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
-        // TODO add your handling code here:
-         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-      btnRegistro.requestFocus();
-    }  
-    }//GEN-LAST:event_txtContrasenaKeyPressed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         // TODO add your handling code here:
@@ -224,11 +210,12 @@ this.repaint();
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel fotoGrupo;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblcontra;
     private javax.swing.JPanel panelRegistro;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
