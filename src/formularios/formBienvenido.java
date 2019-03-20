@@ -100,7 +100,7 @@ public class formBienvenido extends javax.swing.JFrame {
         // TODO add your handling code here:
          vistaprincipal ir=new vistaprincipal();
         ir.setVisible(true);
-                dispose();
+               this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     /**

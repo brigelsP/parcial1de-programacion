@@ -143,7 +143,7 @@ public class formContrasena extends javax.swing.JFrame {
         
         vistaprincipal ir=new vistaprincipal();
         ir.setVisible(true);
-                dispose();
+               this.setVisible(false);
 
     }//GEN-LAST:event_btnSalirActionPerformed
 
