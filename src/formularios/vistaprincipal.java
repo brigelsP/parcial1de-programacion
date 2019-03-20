@@ -7,8 +7,10 @@ package formularios;
 
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -24,8 +26,25 @@ public class vistaprincipal extends javax.swing.JFrame {
      * Creates new form vistaprincipal
      */
     public vistaprincipal() {
+        
+        //quitar los bordes de la pantalla
+        vistaprincipal.super.setUndecorated(true);
+
+        //centrarlo
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;
+        setSize(width / 2, height / 2);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+        
+         
 
         initComponents();
+        
+        
+
         //color de fondo
         //this.getContentPane().setBackground(Color.WHITE);
         //imagen de la ues
@@ -33,19 +52,21 @@ public class vistaprincipal extends javax.swing.JFrame {
         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT));
         lblImagen.setIcon(icono);
         this.repaint();
-        
-        //ubicar el foco en el primer textfield
-        
-        txtUsuario.requestFocus();
-        
-        
-        
 
-//image del boton salida
-        /*   ImageIcon fotoSalida = new ImageIcon("src/imagenes/salir-icono-png-8.png");
-Icon iconosalida = new ImageIcon(fotoSalida.getImage().getScaledInstance(btnSalir.getWidth(), btnSalir.getHeight(), Image.SCALE_DEFAULT));
-btnSalir.setIcon(iconosalida);
-this.repaint(); */
+        //ubicar el foco en el primer textfield
+        txtUsuario.requestFocus();
+
+        //foto de grupo
+        ImageIcon fotodeGrupo = new ImageIcon("src/imagenes/Fotodeequipo.jpg");
+        Icon iconogrupo = new ImageIcon(fotodeGrupo.getImage().getScaledInstance(fotoGrupo.getWidth(), fotoGrupo.getHeight(), Image.SCALE_DEFAULT));
+        fotoGrupo.setIcon(iconogrupo);
+        this.repaint();
+
+//image del fondo
+        ImageIcon fondo1 = new ImageIcon("src/imagenes/ues_fondo02.jpg");
+        Icon iconosalida = new ImageIcon(fondo1.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
+        fondo.setIcon(iconosalida);
+        this.repaint();
     }
 
     /**
@@ -61,12 +82,18 @@ this.repaint(); */
         lblUsuario = new javax.swing.JLabel();
         lblcontra = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasena = new javax.swing.JTextField();
-        btnSalir = new javax.swing.JButton();
+        txtContrasena = new javax.swing.JPasswordField();
         btnRegistro = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
+        fotoGrupo = new javax.swing.JLabel();
+        lblCambiar = new javax.swing.JLabel();
+        lblIngresar = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(0, 0));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblUsuario.setText("Usuario:");
@@ -80,14 +107,11 @@ this.repaint(); */
             }
         });
 
-        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistro.setText("ingresar");
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaActionPerformed(evt);
-            }
-        });
-        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtContrasenaKeyPressed(evt);
+                btnRegistroActionPerformed(evt);
             }
         });
 
@@ -95,30 +119,40 @@ this.repaint(); */
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistroLayout.createSequentialGroup()
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnRegistro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(txtContrasena))
                 .addGap(35, 35, 35))
         );
         panelRegistroLayout.setVerticalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblcontra)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblcontra))
+                .addGap(23, 23, 23)
+                .addComponent(btnRegistro)
                 .addContainerGap())
         );
+
+        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 130));
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir.setText("salir");
@@ -127,66 +161,56 @@ this.repaint(); */
                 btnSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 29));
+        getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 62, 56));
+        getContentPane().add(fotoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 100));
 
-        btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnRegistro.setText("Registrarse");
+        lblCambiar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblCambiar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiar.setText("Cambiar contraseña");
+        lblCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCambiarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegistro)
-                            .addComponent(panelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalir))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addComponent(panelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(btnRegistro)
-                .addGap(26, 26, 26))
-        );
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        lblIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIngresar.setText("Ingresar");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 190, -1));
+
+        fondo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContrasenaActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         // TODO add your handling code here:
-         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-       txtContrasena.requestFocus();
-    }  
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtContrasena.requestFocus();
+        }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
-    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         // TODO add your handling code here:
-         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-      btnRegistro.requestFocus();
-    }  
-    }//GEN-LAST:event_txtContrasenaKeyPressed
+    }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
+        // TODO add your handling code here:
+        formContrasena verformulario=new formContrasena();
+                verformulario.setVisible(true);
+                
+                this.setVisible(false);
+                
+    }//GEN-LAST:event_lblCambiarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -226,11 +250,15 @@ this.repaint(); */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel fotoGrupo;
+    private javax.swing.JLabel lblCambiar;
     private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblIngresar;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblcontra;
     private javax.swing.JPanel panelRegistro;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
