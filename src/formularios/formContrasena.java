@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -36,6 +37,8 @@ public class formContrasena extends javax.swing.JFrame {
         
         
         initComponents();
+        
+        paswActual.requestFocus();
     }
 
     /**
@@ -47,27 +50,33 @@ public class formContrasena extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblActual = new javax.swing.JLabel();
         paswActual = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        lblNueva = new javax.swing.JLabel();
         paswNueva = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cambiar contraseña");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Cambiar contraseña");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("contraseña actual:");
+        lblActual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblActual.setForeground(new java.awt.Color(255, 255, 255));
+        lblActual.setText("contraseña actual:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("contraseña nueva:");
+        paswActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                paswActualKeyPressed(evt);
+            }
+        });
+
+        lblNueva.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNueva.setForeground(new java.awt.Color(255, 255, 255));
+        lblNueva.setText("contraseña nueva:");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Aceptar");
@@ -88,14 +97,14 @@ public class formContrasena extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblTitulo)
                         .addGap(44, 44, 44))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblActual)
                         .addGap(18, 18, 18)
                         .addComponent(paswActual, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(lblNueva)
                         .addGap(18, 18, 18)
                         .addComponent(paswNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(83, Short.MAX_VALUE))
@@ -112,15 +121,15 @@ public class formContrasena extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnSalir)
                 .addGap(13, 13, 13)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(paswActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblActual))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(paswNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(lblNueva))
                 .addGap(41, 41, 41)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -137,6 +146,13 @@ public class formContrasena extends javax.swing.JFrame {
                 dispose();
 
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void paswActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paswActualKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            paswNueva.requestFocus();
+        }
+    }//GEN-LAST:event_paswActualKeyPressed
 
     /**
      * @param args the command line arguments
@@ -176,9 +192,9 @@ public class formContrasena extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblActual;
+    private javax.swing.JLabel lblNueva;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JPasswordField paswActual;
     private javax.swing.JTextField paswNueva;
     // End of variables declaration//GEN-END:variables
