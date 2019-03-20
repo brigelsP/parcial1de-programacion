@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -201,6 +202,11 @@ public class vistaprincipal extends javax.swing.JFrame {
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         // TODO add your handling code here:
+        formBienvenido abrirformulario=new formBienvenido();
+        abrirformulario.setVisible(true);
+        this.setVisible(false);
+    
+      
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
