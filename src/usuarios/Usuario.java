@@ -28,6 +28,15 @@ public class Usuario {
     
     }
  
+    public void changeUser(String pass, String newUser){
+        
+        if(!checkPassword(pass))
+            return;
+        
+        this.user = newUser;
+    
+    }
+    
     
     public static String defaultUser(){
     

@@ -84,16 +84,18 @@ public class vistaprincipal extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
         btnRegistro = new javax.swing.JButton();
+        lblIngresar = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
         fotoGrupo = new javax.swing.JLabel();
         lblCambiar = new javax.swing.JLabel();
-        lblIngresar = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelRegistro.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar"));
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblUsuario.setText("Usuario:");
@@ -115,31 +117,39 @@ public class vistaprincipal extends javax.swing.JFrame {
             }
         });
 
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIngresar.setText("Ingresar");
+
         javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistroLayout.createSequentialGroup()
+            .addGroup(panelRegistroLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
+                        .addComponent(lblIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
                         .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18))
-                    .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnRegistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
-                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                    .addComponent(txtContrasena))
-                .addGap(35, 35, 35))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(258, 258, 258))
+            .addGroup(panelRegistroLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btnRegistro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRegistroLayout.setVerticalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(lblIngresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,12 +157,12 @@ public class vistaprincipal extends javax.swing.JFrame {
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblcontra))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegistro)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
 
-        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 130));
+        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 380, 170));
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir.setText("salir");
@@ -161,7 +171,7 @@ public class vistaprincipal extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 29));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 29));
         getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 62, 56));
         getContentPane().add(fotoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 100));
 
@@ -174,12 +184,6 @@ public class vistaprincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
-
-        lblIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        lblIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIngresar.setText("Ingresar");
-        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 190, -1));
 
         fondo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 450));
