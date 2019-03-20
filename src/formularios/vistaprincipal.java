@@ -26,7 +26,7 @@ public class vistaprincipal extends javax.swing.JFrame {
      * Creates new form vistaprincipal
      */
     public vistaprincipal() {
-
+        
         //quitar los bordes de la pantalla
         vistaprincipal.super.setUndecorated(true);
 
@@ -38,8 +38,13 @@ public class vistaprincipal extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
+        
+         
 
         initComponents();
+        
+        
+
         //color de fondo
         //this.getContentPane().setBackground(Color.WHITE);
         //imagen de la ues
@@ -78,10 +83,12 @@ public class vistaprincipal extends javax.swing.JFrame {
         lblcontra = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
-        btnSalir = new javax.swing.JButton();
         btnRegistro = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
         fotoGrupo = new javax.swing.JLabel();
+        lblCambiar = new javax.swing.JLabel();
+        lblIngresar = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,16 +107,30 @@ public class vistaprincipal extends javax.swing.JFrame {
             }
         });
 
+        btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistro.setText("ingresar");
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistroLayout.createSequentialGroup()
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblcontra, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnRegistro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(txtContrasena))
@@ -118,18 +139,20 @@ public class vistaprincipal extends javax.swing.JFrame {
         panelRegistroLayout.setVerticalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblcontra)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblcontra))
+                .addGap(23, 23, 23)
+                .addComponent(btnRegistro)
                 .addContainerGap())
         );
 
-        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 90));
+        getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 130));
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir.setText("salir");
@@ -139,18 +162,27 @@ public class vistaprincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, 29));
-
-        btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnRegistro.setText("Registrarse");
-        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
         getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 62, 56));
         getContentPane().add(fotoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 100));
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 412, 450));
+
+        lblCambiar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblCambiar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiar.setText("Cambiar contraseña");
+        lblCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCambiarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
+
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        lblIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIngresar.setText("Ingresar");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 190, -1));
+
+        fondo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,6 +202,15 @@ public class vistaprincipal extends javax.swing.JFrame {
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
+        // TODO add your handling code here:
+        formContrasena verformulario=new formContrasena();
+                verformulario.setVisible(true);
+                
+                this.setVisible(false);
+                
+    }//GEN-LAST:event_lblCambiarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,7 +252,9 @@ public class vistaprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fotoGrupo;
+    private javax.swing.JLabel lblCambiar;
     private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblIngresar;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblcontra;
     private javax.swing.JPanel panelRegistro;
