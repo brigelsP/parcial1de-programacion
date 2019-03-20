@@ -29,5 +29,16 @@ public class Usuario {
     }
  
     
+    public static String defaultUser(){
+    
+        return "luis@ues.com";
+    
+    }
+    
+    public static String defaultPass(){
+        
+        return "#123Hola";
+        
+    }
 }
 
