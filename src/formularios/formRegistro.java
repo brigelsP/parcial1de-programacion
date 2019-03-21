@@ -48,6 +48,7 @@ public class formRegistro extends javax.swing.JFrame {
     public void createUser(){
         
         String user = txtUsuario.getText();
+        user.toLowerCase();
         String passPrinc = String.copyValueOf(paswPrinc.getPassword());
         String passRep = String.copyValueOf(paswRep.getPassword());
         
@@ -223,7 +224,7 @@ public class formRegistro extends javax.swing.JFrame {
                     .addComponent(paswPrinc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(paswRep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)

@@ -25,6 +25,7 @@ public class formContrasena extends javax.swing.JFrame {
     private void changePass(){
     
         String user = txtUsuario.getText();
+        user.toLowerCase();
         String passActual = String.copyValueOf(paswActual.getPassword());
         String passNueva = String.copyValueOf(paswNueva.getPassword());
         

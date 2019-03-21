@@ -31,6 +31,7 @@ public class vistaprincipal extends javax.swing.JFrame {
     private void execLogin(){
         
         String user = txtUsuario.getText();
+        user.toLowerCase();
         String pass = String.copyValueOf(txtContrasena.getPassword());
         
          if(!Validar.email(user)){
