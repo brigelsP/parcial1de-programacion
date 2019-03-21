@@ -35,7 +35,7 @@ public class vistaprincipal extends javax.swing.JFrame {
         
          if(!Validar.email(user)){
             
-            warninglbl.setText("Usuario Invalido");
+            warninglbl.setText("Correo Invalido");
             return;
         }
          
