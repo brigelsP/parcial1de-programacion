@@ -76,6 +76,12 @@ public class vistaprincipal extends javax.swing.JFrame {
         }
              
         System.out.println("Exito");
+        bienvenida verbienvenida = new bienvenida(dbase[userPos].getUser());
+        verbienvenida.setVisible(true);
+
+        dispose();
+        
+        
     }
     
     private Usuario[] dbase;
