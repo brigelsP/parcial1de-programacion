@@ -5,6 +5,9 @@
  */
 package formularios;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Jose Carlos
@@ -18,7 +21,17 @@ public class bienvenida extends javax.swing.JFrame {
     String user;
     public bienvenida(String user){
         this.user = user;
-        modify(user);
+        
+         bienvenida.super.setUndecorated(true);
+         
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = pantalla.height;
+        int width = pantalla.width;
+        setSize(width / 2, height / 2);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+
         initComponents();
     }
 
@@ -44,7 +57,7 @@ public class bienvenida extends javax.swing.JFrame {
 
         Usuariolbl.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Usuariolbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Usuariolbl.setText("usuario");
+        Usuariolbl.setText(this.user);
 
         jLabel3.setText("Ufff! Parece que este proyecto se merece un 10 :v");
 
@@ -58,12 +71,9 @@ public class bienvenida extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                    .addComponent(jLabel4))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel4)
-                .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(Usuariolbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -78,9 +88,9 @@ public class bienvenida extends javax.swing.JFrame {
                 .addComponent(Usuariolbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(125, 125, 125)
                 .addComponent(jLabel3)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
