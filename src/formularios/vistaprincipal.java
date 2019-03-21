@@ -146,7 +146,8 @@ public class vistaprincipal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
         fotoGrupo = new javax.swing.JLabel();
-        lblCambiar = new javax.swing.JLabel();
+        lblRegistrarse = new javax.swing.JLabel();
+        lblCambiar1 = new javax.swing.JLabel();
         warninglbl = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
@@ -240,15 +241,25 @@ public class vistaprincipal extends javax.swing.JFrame {
         getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 62, 56));
         getContentPane().add(fotoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, 100));
 
-        lblCambiar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        lblCambiar.setForeground(new java.awt.Color(255, 255, 255));
-        lblCambiar.setText("Cambiar contraseña");
-        lblCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRegistrarse.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
+        lblRegistrarse.setText("Registrarse");
+        lblRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCambiarMouseClicked(evt);
+                lblRegistrarseMouseClicked(evt);
             }
         });
-        getContentPane().add(lblCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
+        getContentPane().add(lblRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
+
+        lblCambiar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCambiar1.setForeground(new java.awt.Color(255, 255, 255));
+        lblCambiar1.setText("Cambiar contraseña");
+        lblCambiar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCambiar1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblCambiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         warninglbl.setForeground(new java.awt.Color(255, 0, 0));
         getContentPane().add(warninglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
@@ -276,20 +287,27 @@ public class vistaprincipal extends javax.swing.JFrame {
         execLogin();
     }//GEN-LAST:event_btnRegistroActionPerformed
 
-    private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
-        // TODO add your handling code here:
-        formContrasena verformulario=new formContrasena();
-                verformulario.setVisible(true);
-                
-                this.setVisible(false);
-                
-    }//GEN-LAST:event_lblCambiarMouseClicked
+    private void lblRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarseMouseClicked
+        formRegistro verformulario = new formRegistro();
+        verformulario.setVisible(true);
+
+        dispose();
+
+    }//GEN-LAST:event_lblRegistrarseMouseClicked
 
     private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             execLogin();
         }
     }//GEN-LAST:event_txtContrasenaKeyPressed
+
+    private void lblCambiar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiar1MouseClicked
+        formContrasena verformulario = new formContrasena();
+        verformulario.setVisible(true);
+
+        dispose();
+
+    }//GEN-LAST:event_lblCambiar1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -331,9 +349,10 @@ public class vistaprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fotoGrupo;
-    private javax.swing.JLabel lblCambiar;
+    private javax.swing.JLabel lblCambiar1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblIngresar;
+    private javax.swing.JLabel lblRegistrarse;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblcontra;
     private javax.swing.JPanel panelRegistro;

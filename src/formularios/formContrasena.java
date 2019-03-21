@@ -28,8 +28,8 @@ public class formContrasena extends javax.swing.JFrame {
         String passActual = String.copyValueOf(paswActual.getPassword());
         String passNueva = String.copyValueOf(paswNueva.getPassword());
         
-         if(!Validar.email(user)){
-            
+        if (!Validar.email(user)) {
+
             warninglbl.setText("Usuario Invalido");
             return;
         }
@@ -259,9 +259,9 @@ public class formContrasena extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         
-        vistaprincipal ir=new vistaprincipal();
+        vistaprincipal ir = new vistaprincipal();
         ir.setVisible(true);
-                dispose();
+        dispose();
 
     }//GEN-LAST:event_btnSalirActionPerformed
 
