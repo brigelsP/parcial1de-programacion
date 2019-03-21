@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import usuarios.Usuario;
+import validacion.Validar;
 
 /**
  *
@@ -25,11 +27,67 @@ public class vistaprincipal extends javax.swing.JFrame {
     /**
      * Creates new form vistaprincipal
      */
+    
+    private void execLogin(){
+        
+        String user = txtUsuario.getText();
+        String pass = String.copyValueOf(txtContrasena.getPassword());
+        
+         if(!Validar.email(user)){
+            
+            warninglbl.setText("Usuario Invalido");
+            return;
+        }
+         
+        if(!Validar.password(pass)){
+            
+             warninglbl.setText("Contraseña Invalida");
+             return;
+        
+        }
+           
+        
+        int userPos = -1;
+    
+        for(int i = 0; i < dbase.length; i++){
+            
+            if(dbase[i] == null){
+                warninglbl.setText("Usuario inexistente (null)");
+                return;
+            }
+            
+            if(dbase[i].getUser().equals(user)){
+            
+                userPos = i;
+                break;
+            }
+            
+        }
+        
+        if (userPos == -1) {
+            warninglbl.setText("Usuario Inexistente");
+            return;
+        }
+        
+        if(!dbase[userPos].checkPassword(pass)){
+        
+            warninglbl.setText("Contraseña Incorrecta");
+            return;
+        }
+             
+        System.out.println("Exito");
+    }
+    
+    private Usuario[] dbase;
+    
     public vistaprincipal() {
         
         //quitar los bordes de la pantalla
         vistaprincipal.super.setUndecorated(true);
-
+        
+        dbase = Usuario.fill();
+        
+             
         //centrarlo
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int height = pantalla.height;
@@ -89,6 +147,7 @@ public class vistaprincipal extends javax.swing.JFrame {
         lblImagen = new javax.swing.JLabel();
         fotoGrupo = new javax.swing.JLabel();
         lblCambiar = new javax.swing.JLabel();
+        warninglbl = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,6 +165,12 @@ public class vistaprincipal extends javax.swing.JFrame {
         txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUsuarioKeyPressed(evt);
+            }
+        });
+
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
             }
         });
 
@@ -185,6 +250,10 @@ public class vistaprincipal extends javax.swing.JFrame {
         });
         getContentPane().add(lblCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
 
+        warninglbl.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(warninglbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        fondo.setBackground(new java.awt.Color(255, 255, 255));
         fondo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 450));
 
@@ -204,7 +273,7 @@ public class vistaprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        // TODO add your handling code here:
+        execLogin();
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
@@ -215,6 +284,12 @@ public class vistaprincipal extends javax.swing.JFrame {
                 this.setVisible(false);
                 
     }//GEN-LAST:event_lblCambiarMouseClicked
+
+    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            execLogin();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -264,5 +339,6 @@ public class vistaprincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelRegistro;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JLabel warninglbl;
     // End of variables declaration//GEN-END:variables
 }

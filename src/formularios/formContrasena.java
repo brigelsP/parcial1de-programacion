@@ -9,6 +9,8 @@ import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import usuarios.Usuario;
+import validacion.Validar;
 
 /**
  *
@@ -19,9 +21,77 @@ public class formContrasena extends javax.swing.JFrame {
     /**
      * Creates new form formContrasena
      */
+    
+    private void changePass(){
+    
+        String user = txtUsuario.getText();
+        String passActual = String.copyValueOf(paswActual.getPassword());
+        String passNueva = String.copyValueOf(paswNueva.getPassword());
+        
+         if(!Validar.email(user)){
+            
+            warninglbl.setText("Usuario Invalido");
+            return;
+        }
+         
+        if(!Validar.password(passActual)){
+            
+             warninglbl.setText("Contraseña Actual Invalida");
+             return;
+        
+        }
+        if(!Validar.password(passNueva)){
+            
+             warninglbl.setText("Contraseña Nueva Invalida");
+             return;
+        
+        }
+        
+        int userPos = -1;
+    
+        for(int i = 0; i < dbase.length; i++){
+            
+            if(dbase[i] == null){
+                warninglbl.setText("Usuario inexistente (null)");
+                return;
+            }
+            
+            if(dbase[i].getUser().equals(user)){
+            
+                userPos = i;
+                break;
+            }
+            
+        }
+        
+        if (userPos == -1) {
+            warninglbl.setText("Usuario Inexistente");
+            return;
+        }
+        
+        if(!dbase[userPos].changePassword(passActual,passNueva)){
+            
+            warninglbl.setText("Contraseña Incorrecta");
+        
+        }else{
+        
+            Usuario.pour(dbase);
+           
+            vistaprincipal ir = new vistaprincipal();
+            ir.setVisible(true);
+            dispose();
+        
+        }
+    
+    }
+    
+    Usuario[] dbase;
+    
     public formContrasena() {
          //color de fondo
         this.getContentPane().setBackground(Color.BLACK);
+        
+        dbase = Usuario.fill();
         
          //quitar los bordes de la pantalla
         formContrasena.super.setUndecorated(true);
@@ -54,11 +124,12 @@ public class formContrasena extends javax.swing.JFrame {
         lblActual = new javax.swing.JLabel();
         paswActual = new javax.swing.JPasswordField();
         lblNueva = new javax.swing.JLabel();
-        paswNueva = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        paswNueva = new javax.swing.JPasswordField();
+        warninglbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +153,11 @@ public class formContrasena extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir.setText("Regresar");
@@ -95,16 +171,24 @@ public class formContrasena extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                txtUsuarioKeyPressed(evt);
             }
         });
+
+        paswNueva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                paswNuevaKeyPressed(evt);
+            }
+        });
+
+        warninglbl.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,26 +202,28 @@ public class formContrasena extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblTitulo)
-                                        .addGap(44, 44, 44))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNueva)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(paswNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(lblActual))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(paswActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                            .addComponent(jTextField1)))))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
-                                .addComponent(jButton1)))
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(warninglbl)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblTitulo)
+                                            .addGap(44, 44, 44))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblNueva)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(paswNueva, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(lblActual))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(paswActual, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                                .addComponent(txtUsuario)))))))
                         .addGap(0, 73, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -148,21 +234,23 @@ public class formContrasena extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblActual)
                     .addComponent(paswActual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paswNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNueva))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblNueva)
+                    .addComponent(paswNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addGap(18, 18, 18)
+                .addComponent(warninglbl)
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -184,15 +272,25 @@ public class formContrasena extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_paswActualKeyPressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             paswActual.requestFocus();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void paswNuevaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paswNuevaKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            changePass();
+        }
+    }//GEN-LAST:event_paswNuevaKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        changePass();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,11 +331,12 @@ public class formContrasena extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblActual;
     private javax.swing.JLabel lblNueva;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPasswordField paswActual;
-    private javax.swing.JTextField paswNueva;
+    private javax.swing.JPasswordField paswNueva;
+    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JLabel warninglbl;
     // End of variables declaration//GEN-END:variables
 }

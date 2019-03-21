@@ -30,12 +30,14 @@ public class Usuario {
               
     }
     
-    public void changePassword(String pass, String newpass){
+    public boolean changePassword(String pass, String newpass){
     
         if(!checkPassword(pass))
-            return;
+            return false;
         
         this.password = newpass;
+        
+        return true;
     
     }
  
