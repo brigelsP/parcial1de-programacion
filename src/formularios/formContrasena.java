@@ -108,7 +108,7 @@ public class formContrasena extends javax.swing.JFrame {
         
         initComponents();
         
-        paswActual.requestFocus();
+        txtUsuario.requestFocus();
     }
 
     /**
