@@ -152,8 +152,6 @@ public class Usuario {
         
         String cant = String.valueOf(cont);
         
-        System.out.println(cant);
-        
         try {
             outputWriter.write(cant+"\n");
             outputWriter.flush();
