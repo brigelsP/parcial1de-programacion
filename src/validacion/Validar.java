@@ -27,13 +27,26 @@ public class Validar {
         
         if(count_at != 1 || at == size - 1) return false;
         
-        for(int i = 0; i < size; i++){
-            if(i == at) continue;
+        for(int i = 0; i < at; i++){
             if( !(Character.isLetterOrDigit(t[i]) || t[i] == '_' || t[i] == '.' || t[i] == '-') ){
                 return false;
             }
         }
                 
+        int last_dot = 0;
+        for(int i = at + 1; i < size; i++){
+            if( !(Character.isLetterOrDigit(t[i]) || t[i] == '_' || t[i] == '.' || t[i] == '-') ){
+                return false;
+            }
+            if(t[i] == '.')last_dot = i;
+        }
+        
+        if(last_dot == at + 1 || last_dot == size - 1) return false;
+        
+        for(int i = last_dot + 1; i < size; i++){
+            if( !Character.isLetter( t[i] ) )return false;
+        }
+        
         return true;
     }
     
