@@ -17,15 +17,23 @@ public class Validar {
         char t[] = new char[size];
         
         int at = 0, count_at = 0;
+        int pos_at = 0;
         for(int i = 0; i < size; i++){
             t[i] = target.charAt(i);
             if(t[i] == '@'){
                 at = i;
                 count_at++;
             }
+                        
+            if(i > at){
+                
+                pos_at ++;
+                
+            }
         }
         
         if(count_at != 1 || at == size - 1) return false;
+        if(pos_at == 0) return false;
         
         for(int i = 0; i < size; i++){
             if(i == at) continue;
@@ -55,5 +63,15 @@ public class Validar {
             }
         }
         return count_alpha != 0 && count_number != 0 && count_especial != 0;
+    }
+    
+    public static void main(String args[]){
+    
+        System.out.println(email("luismarioram99"));
+        System.out.println(email("luis@jsi.com"));
+        System.out.println(email("caray@.com"));
+                
+    
+    
     }
 }
