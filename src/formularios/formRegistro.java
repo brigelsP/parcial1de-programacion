@@ -48,7 +48,7 @@ public class formRegistro extends javax.swing.JFrame {
     public void createUser(){
         
         String user = txtUsuario.getText();
-        user.toLowerCase();
+        user = user.toLowerCase();
         String passPrinc = String.copyValueOf(paswPrinc.getPassword());
         String passRep = String.copyValueOf(paswRep.getPassword());
         
